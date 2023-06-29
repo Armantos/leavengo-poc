@@ -8,12 +8,13 @@
   <title>Leave&Go</title>
   <link rel="icon" href="images/icons/logo-icon.png">
   <link href="https://unpkg.com/tailwindcss@^2.1.1/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css">
 </head>
 
 <body class="bg-gray-100">
 
   <!-- Navbar -->
-  <nav class="bg-white shadow fixed top-0 w-full">
+  <nav class="bg-white shadow fixed top-0 w-full z-10">
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between py-4">
         <div class="flex items-center">
@@ -113,6 +114,22 @@
           cours de définition et nous avons besoin de votre aide pour le développer.
         </p>
       </div>
+    </div>
+  </div>
+
+  <!-- Map section -->
+  <div id="map-section" class="bg-gray-100 py-12 z-0">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl py-4">
+          Trouvez un stockage à proximité
+        </h3>
+      </div>
+      <div class="container mx-auto px-4">
+        <div id="map"></div>
+      </div>
+      <script src="script.js"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXt4hK_5Q5s7mOginAKVY752Q84jAhSC0&map_ids=c429a4ae566f8257&callback=initMap"></script>
     </div>
   </div>
 
