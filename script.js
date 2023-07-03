@@ -73,6 +73,56 @@ function placeMarkers(map) {
 		['<a href="https://goo.gl/maps/2krY1aTWCVtzy49w8" target="_blank" class="text-blue-500">McDonald Villejuif</a><p>123 Bd Maxime Gorki</p><p>94800 Villejuif</p><br><p class="font-bold">Caractéristiques :</p><p>Caméra</p><p>Surveillance physique</p><p>Couvert</p>', 48.791912, 2.369734],
 	];
 
+
+	// Ajouter une variable pour stocker la référence de l'info window ouverte
+let openInfoWindow = null;
+
+// ...
+
+	// Adding the markers to the map
+	for (let i = 0; i < markers.length; i++) {
+		const currMarker = markers[i];
+		const marker = new google.maps.Marker({
+			position: { lat: currMarker[1], lng: currMarker[2] },
+			map,
+			title: currMarker[0],
+			icon: {
+				url: currMarker[3],
+				scaledSize: new google.maps.Size(currMarker[4], currMarker[5]),
+			},
+			animation: google.maps.Animation.DROP,
+		});
+		const infowindow = new google.maps.InfoWindow({
+		content: currMarker[0],
+		});
+
+		// Display the info window on marker click
+		marker.addListener('click', () => {
+			// Fermer l'info window ouverte précédemment, s'il y en a une
+			if (openInfoWindow) {
+				openInfoWindow.close();
+			}
+
+			// Ouvrir l'info window du marqueur actuel
+			infowindow.open(map, marker);
+
+			// Mettre à jour la référence de l'info window ouverte
+			openInfoWindow = infowindow;
+		});
+
+		// Close the info window when clicking outside of it
+		window.addEventListener('click', (event) => {
+			if (!infowindow.getContent().includes(event.target)) {
+			  infowindow.close();
+			}
+		});
+
+	
+	}
+
+
+
+	/*
 	// Adding the markers to the map
 	for (let i = 0; i < markers.length; i++) {
 		const currMarker = markers[i];
@@ -102,4 +152,5 @@ function placeMarkers(map) {
 			}
 		  });
 	}
+	*/
 }
